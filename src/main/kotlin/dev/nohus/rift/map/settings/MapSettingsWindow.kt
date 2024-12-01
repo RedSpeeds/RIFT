@@ -73,6 +73,7 @@ fun MapSettingsWindow(
             onJumpBridgeImportClick = viewModel::onJumpBridgeImportClick,
             onJumpBridgeSearchClick = viewModel::onJumpBridgeSearchClick,
             onJumpBridgeSearchImportClick = viewModel::onJumpBridgeSearchImportClick,
+            onShowConstellationChange = viewModel::onShowConstellationChange,
         )
 
         if (state.isJumpBridgeSearchDialogShown) {
@@ -128,6 +129,7 @@ private fun MapSettingsWindowContent(
     onIsCharacterFollowingChange: (Boolean) -> Unit,
     onIsScrollZoomInvertedChange: (Boolean) -> Unit,
     onIsAlwaysShowingSystemsChange: (Boolean) -> Unit,
+    onShowConstellationChange: (Boolean) -> Unit,
     onIsUsingRiftAutopilotRouteChange: (Boolean) -> Unit,
     onIsJumpBridgeNetworkShownChange: (Boolean) -> Unit,
     onJumpBridgeNetworkOpacityChange: (Int) -> Unit,
@@ -162,6 +164,12 @@ private fun MapSettingsWindowContent(
                 tooltip = "System labels won't hide when zooming out",
                 isChecked = intelMap.isAlwaysShowingSystems,
                 onCheckedChange = { onIsAlwaysShowingSystemsChange(it) },
+            )
+            RiftCheckboxWithLabel(
+                label = "Show constellation",
+                tooltip = "System infoboxes will show constellation",
+                isChecked = intelMap.showConstellation,
+                onCheckedChange = { onShowConstellationChange(it) },
             )
             Text(
                 text = buildAnnotatedString {

@@ -32,6 +32,7 @@ class MapSettingsViewModel(
         val jumpBridgeNetworkUrl: String?,
         val jumpBridgeSearchState: JumpBridgeSearchState,
         val isJumpBridgeSearchDialogShown: Boolean,
+        val showConstellation: Boolean,
     )
 
     sealed interface JumpBridgeNetworkState {
@@ -62,6 +63,7 @@ class MapSettingsViewModel(
             jumpBridgeNetworkUrl = configurationPackRepository.getJumpBridgeNetworkUrl(),
             jumpBridgeSearchState = JumpBridgeSearchState.NotSearched,
             isJumpBridgeSearchDialogShown = false,
+            showConstellation = false,
         ),
     )
     val state = _state.asStateFlow()
@@ -87,6 +89,10 @@ class MapSettingsViewModel(
                 }
             }
         }
+    }
+
+    fun onShowConstellationChange(enabled: Boolean) {
+        settings.intelMap = settings.intelMap.copy(showConstellation = enabled)
     }
 
     fun onIntelPopupTimeoutSecondsChange(seconds: Int) {

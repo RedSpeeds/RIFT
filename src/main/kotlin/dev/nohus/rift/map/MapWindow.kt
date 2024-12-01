@@ -680,6 +680,11 @@ private fun SystemInfoBoxesLayer(
         } else {
             null
         }
+        val constellationName = if(state.settings.showConstellation) {
+            state.cluster.constellations.first { it.id == system.constellationId}.name
+        } else {
+            null
+        }
 
         val isZoomEnough = (state.settings.isAlwaysShowingSystems || mapScale <= (0.9f / LocalDensity.current.density))
         val isShowingSystemInfoBox = (state.mapType is RegionMap && isZoomEnough) ||
@@ -690,6 +695,7 @@ private fun SystemInfoBoxesLayer(
             SystemInfoBox(
                 system = system,
                 regionName = regionName,
+                constellationName = constellationName,
                 isHighlightedOrHovered = isHighlightedOrHovered,
                 intel = state.mapState.intel[system.id],
                 hasIntelPopup = hasIntelPopup,

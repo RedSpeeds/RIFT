@@ -90,6 +90,7 @@ import java.time.Instant
 fun SystemInfoBox(
     system: MapSolarSystem,
     regionName: String?,
+    constellationName: String?,
     isHighlightedOrHovered: Boolean,
     intel: List<Dated<SystemEntity>>?,
     hasIntelPopup: Boolean,
@@ -153,6 +154,15 @@ fun SystemInfoBox(
                     if (regionName != null) {
                         Text(
                             text = regionName,
+                            style = RiftTheme.typography.captionSecondary,
+                            modifier = Modifier
+                                .pointerHoverIcon(PointerIcon(Cursors.pointerInteractive))
+                                .onClick { onRegionClick() },
+                        )
+                    }
+                    if (constellationName != null) {
+                        Text(
+                            text = constellationName,
                             style = RiftTheme.typography.captionSecondary,
                             modifier = Modifier
                                 .pointerHoverIcon(PointerIcon(Cursors.pointerInteractive))

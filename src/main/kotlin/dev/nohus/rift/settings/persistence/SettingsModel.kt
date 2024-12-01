@@ -104,6 +104,7 @@ data class IntelMap(
     val jumpBridgeNetworkOpacity: Int = 100,
     val openedLayoutId: Int? = null,
     val isAlwaysShowingSystems: Boolean = false,
+    val showConstellation: Boolean = false,
 )
 
 @Serializable
